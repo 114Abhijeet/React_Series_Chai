@@ -3,11 +3,17 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {removeTodo} from '../features/todo/todoSlice'
 
+//Since you mentioned that accessing state.todos works, it's highly likely that your store is configured with a 
+// single reducer directly, not under any key. Here’s the summary:
+// Single Reducer Setup: Your reducer directly manages the root state.
+// Accessing State: Use state.todos if the todoReducer is directly assigned to the store.
 function Todos() {
   //useSelector: Fetches todos from the Redux store state. It takes a selector function that receives
   //the entire Redux state and returns the part of the state you're interested in (state.todos in this case).
-    const todos = useSelector((state) => state.todos)
-    const dispatch = useDispatch()
+   // const todos = useSelector((state) => state.todos) //Single Reducer Setup
+   //Multiple Reducer System(we have changed store.js) added key with each reducer
+   const todos = useSelector((state) => state.todoo.todos); 
+    const dispatch = useDispatch();
 
   return (
     <>
